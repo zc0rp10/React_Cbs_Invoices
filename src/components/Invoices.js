@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 
+import Pagination from "./Pagination";
 import { getInvoices } from "../services/tempDatabaseService";
+import { paginate } from "../utils/paginate";
 
 const Invoices = () => {
   const [invoices, setInvoices] = useState(getInvoices());
+  const [pageSize, setPageSize] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
 
   function handleDelete(invoice) {
     setInvoices(prevState => prevState.filter(inv => inv._id !== invoice._id));
   }
 
-  const count = invoices.length;
+  function handlePageChange(page) {
+    setCurrentPage(page);
+  }
 
+  const count = invoices.length;
   if (count === 0)
     return <p className="px-4 py-4">There are no invoice in the database.</p>;
+
+  const paginatedInvoices = paginate(invoices, currentPage, pageSize);
 
   return (
     <div>
@@ -28,7 +37,7 @@ const Invoices = () => {
           </tr>
         </thead>
         <tbody>
-          {invoices.map(invoice => {
+          {paginatedInvoices.map(invoice => {
             const date = new Date(invoice.date).toISOString().slice(0, 10);
             return (
               <tr key={invoice._id}>
@@ -53,6 +62,12 @@ const Invoices = () => {
           })}
         </tbody>
       </table>
+      <Pagination
+        invoiceCount={count}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

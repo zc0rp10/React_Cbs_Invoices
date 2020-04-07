@@ -13211,6 +13211,110 @@ video {
   background-color: #c53030;
 }
 
+/* Pagination */
+
+.btn-pagination-prev {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+  border-width: 1px;
+  border-color: #e2e8f0;
+  background-color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #a0aec0;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.btn-pagination-prev:hover,
+.btn-pagination-next:hover {
+  color: #cbd5e0;
+}
+
+.btn-pagination-prev:focus,
+.btn-pagination-next:focus {
+  z-index: 10;
+  outline: 0;
+}
+
+.btn-pagination-prev:active,
+.btn-pagination-next:active {
+  background-color: #f7fafc;
+  color: #a0aec0;
+}
+
+.btn-pagination-nbr {
+  margin-left: -1px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  border-color: #e2e8f0;
+  background-color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #4a5568;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.btn-pagination-nbr.active {
+  background-color: #edf2f7;
+  color: #a0aec0;
+}
+
+.btn-pagination-nbr:hover {
+  color: #a0aec0;
+}
+
+.btn-pagination-nbr:focus {
+  z-index: 10;
+  outline: 0;
+}
+
+.btn-pagination-nbr:active {
+  background-color: #f7fafc;
+  color: #4a5568;
+}
+
+.btn-pagination-next {
+  margin-left: -1px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  border-width: 1px;
+  border-color: #e2e8f0;
+  background-color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #a0aec0;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
