@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import Pagination from "./Pagination";
+import PaymentStatus from "./PaymentStatus";
+
 import { getInvoices } from "../services/tempDatabaseService";
 import { paginate } from "../utils/paginate";
 
@@ -61,21 +63,7 @@ const Invoices = () => {
                   {invoice.totalAmount}
                 </td>
                 <td className="px-4 py-2 text-sm border-b">
-                  {invoice.status ? (
-                    <span
-                      className="material-icons-outlined text-green-600 cursor-pointer"
-                      onClick={() => togglePaymentStatus(invoice)}
-                    >
-                      sentiment_satisfied
-                    </span>
-                  ) : (
-                    <span
-                      className="material-icons-outlined text-red-600 cursor-pointer"
-                      onClick={() => togglePaymentStatus(invoice)}
-                    >
-                      sentiment_dissatisfied
-                    </span>
-                  )}
+                  <PaymentStatus />
                 </td>
                 <td className="px-4 py 2 text-sm border-b">
                   <button
