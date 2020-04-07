@@ -19,9 +19,9 @@ const Invoices = () => {
     setCurrentPage(page);
   }
 
-  function togglePaymentStatus(invoice) {
+  function handlePaymentStatus(id) {
     const updatedInvoices = invoices.map(inv => {
-      if (inv._id === invoice._id) {
+      if (inv._id === id) {
         return { ...inv, status: !inv.status };
       }
       return inv;
@@ -63,7 +63,10 @@ const Invoices = () => {
                   {invoice.totalAmount}
                 </td>
                 <td className="px-4 py-2 text-sm border-b">
-                  <PaymentStatus />
+                  <PaymentStatus
+                    invoice={invoice}
+                    handlePaymentStatus={handlePaymentStatus}
+                  />
                 </td>
                 <td className="px-4 py 2 text-sm border-b">
                   <button
