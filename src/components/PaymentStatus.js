@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const PaymentStatus = ({ invoice, handlePaymentStatus }) => {
   let classes = "material-icons-outlined cursor-pointer";
@@ -18,6 +19,11 @@ const PaymentStatus = ({ invoice, handlePaymentStatus }) => {
       </span>
     </>
   );
+};
+
+PaymentStatus.propTypes = {
+  invoice: PropTypes.object.isRequired,
+  handlePaymentStatus: PropTypes.func.isRequired,
 };
 
 export default PaymentStatus;
