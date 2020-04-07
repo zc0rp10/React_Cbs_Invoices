@@ -1,26 +1,22 @@
 import React from "react";
-import useToggler from "../hooks/useToggler";
 
-const PaymentStatus = () => {
-  const [isPaid, toggle] = useToggler();
+const PaymentStatus = ({ invoice, handlePaymentStatus }) => {
+  let classes = "material-icons-outlined cursor-pointer";
+  invoice.status
+    ? (classes += " text-green-600")
+    : (classes += " text-red-600");
+
+  let icon = invoice.status ? "sentiment_satisfied" : "sentiment_dissatisfied";
+
   return (
-    <div>
-      {isPaid ? (
-        <span
-          className="material-icons-outlined text-green-600 cursor-pointer"
-          onClick={toggle}
-        >
-          sentiment_satisfied
-        </span>
-      ) : (
-        <span
-          className="material-icons-outlined text-red-600 cursor-pointer"
-          onClick={toggle}
-        >
-          sentiment_dissatisfied
-        </span>
-      )}
-    </div>
+    <>
+      <span
+        className={classes}
+        onClick={() => handlePaymentStatus(invoice._id)}
+      >
+        {icon}
+      </span>
+    </>
   );
 };
 
