@@ -13186,6 +13186,31 @@ video {
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+/* Buttons */
+
+.btn {
+  font-weight: 700;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Danger */
+
+.btn-delete {
+  background-color: #e53e3e;
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+.btn-delete:hover {
+  background-color: #c53030;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

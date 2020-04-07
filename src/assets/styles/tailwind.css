@@ -3,3 +3,18 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+/* Buttons */
+.btn {
+  @apply font-bold py-1 px-2 rounded;
+}
+
+/* Danger */
+.btn-delete {
+  @apply bg-red-600 text-white text-sm;
+}
+
+.btn-delete:hover {
+  @apply bg-red-700;
+}
