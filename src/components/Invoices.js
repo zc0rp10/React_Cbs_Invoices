@@ -17,6 +17,16 @@ const Invoices = () => {
     setCurrentPage(page);
   }
 
+  function togglePaymentStatus(invoice) {
+    const updatedInvoices = invoices.map(inv => {
+      if (inv._id === invoice._id) {
+        return { ...inv, status: !inv.status };
+      }
+      return inv;
+    });
+    setInvoices(updatedInvoices);
+  }
+
   const count = invoices.length;
   if (count === 0)
     return <p className="px-4 py-4">There are no invoice in the database.</p>;
@@ -33,6 +43,7 @@ const Invoices = () => {
             <th className="px-4 py-4 border-b text-left">Date</th>
             <th className="px-4 py-4 border-b text-left">Company</th>
             <th className="px-4 py-4 border-b text-left">Amount</th>
+            <th className="px-4 py-4 border-b text-left">Payment Status</th>
             <th className="px-4 py-4 border-b text-left"></th>
           </tr>
         </thead>
@@ -48,6 +59,23 @@ const Invoices = () => {
                 </td>
                 <td className="px-4 py-2 text-sm border-b">
                   {invoice.totalAmount}
+                </td>
+                <td className="px-4 py-2 text-sm border-b">
+                  {invoice.status ? (
+                    <span
+                      className="material-icons-outlined text-green-600 cursor-pointer"
+                      onClick={() => togglePaymentStatus(invoice)}
+                    >
+                      sentiment_satisfied
+                    </span>
+                  ) : (
+                    <span
+                      className="material-icons-outlined text-red-600 cursor-pointer"
+                      onClick={() => togglePaymentStatus(invoice)}
+                    >
+                      sentiment_dissatisfied
+                    </span>
+                  )}
                 </td>
                 <td className="px-4 py 2 text-sm border-b">
                   <button
