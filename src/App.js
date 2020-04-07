@@ -5,7 +5,7 @@ import Invoices from "./components/Invoices";
 
 function App() {
   return (
-    <div className="App" style={{ height: "100vh" }}>
+    <div className="App h-screen w-screen">
       <Invoices />
     </div>
   );

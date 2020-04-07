@@ -20,6 +20,9 @@
 }
 
 /* Pagination */
+.btn-pagination-nbr.active {
+  @apply bg-gray-200 text-gray-500;
+}
 
 .btn-pagination-prev {
   @apply relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 transition ease-in-out duration-150;
@@ -44,10 +47,6 @@
   @apply -ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 transition ease-in-out duration-150;
 }
 
-.btn-pagination-nbr.active {
-  @apply bg-gray-200 text-gray-500;
-}
-
 .btn-pagination-nbr:hover {
   @apply text-gray-500;
 }
@@ -62,4 +61,10 @@
 
 .btn-pagination-next {
   @apply -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 transition ease-in-out duration-150;
+}
+
+/* List Group Active */
+
+.list-group-item.active {
+  @apply bg-blue-500 text-white;
 }

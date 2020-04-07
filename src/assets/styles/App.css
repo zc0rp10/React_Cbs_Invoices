@@ -13213,6 +13213,11 @@ video {
 
 /* Pagination */
 
+.btn-pagination-nbr.active {
+  background-color: #edf2f7;
+  color: #a0aec0;
+}
+
 .btn-pagination-prev {
   position: relative;
   display: inline-flex;
@@ -13273,11 +13278,6 @@ video {
   transition-duration: 150ms;
 }
 
-.btn-pagination-nbr.active {
-  background-color: #edf2f7;
-  color: #a0aec0;
-}
-
 .btn-pagination-nbr:hover {
   color: #a0aec0;
 }
@@ -13313,6 +13313,13 @@ video {
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+/* List Group Active */
+
+.list-group-item.active {
+  background-color: #4299e1;
+  color: #fff;
 }
 
 @media (min-width: 640px) {

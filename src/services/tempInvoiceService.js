@@ -1,7 +1,8 @@
-export let invoicesDB = [
+export const invoicesDB = [
   {
     _id: "5b21ca3eeb7f6fbccd471815",
     invNbr: 1,
+    clientId: "5b21ca3eeb7f6fbccd471818",
     clientName: "Company A",
     totalAmount: 100,
     status: true,
@@ -10,6 +11,7 @@ export let invoicesDB = [
   {
     _id: "5b21ca3eeb7f6fbccd471816",
     invNbr: 2,
+    clientId: "5b21ca3eeb7f6fbccd471814",
     clientName: "Company B",
     totalAmount: 200,
     status: false,
@@ -18,14 +20,16 @@ export let invoicesDB = [
   {
     _id: "5b21ca3eeb7f6fbccd471817",
     invNbr: 3,
+    clientId: "5b21ca3eeb7f6fbccd471815",
     clientName: "Company C",
     totalAmount: 50,
-    status: true,
+    status: false,
     date: 1586196647403,
   },
   {
     _id: "5b21ca3eeb7f6fbccd471818",
     invNbr: 4,
+    clientId: "5b21ca3eeb7f6fbccd471832",
     clientName: "Company D",
     totalAmount: 250,
     status: false,
@@ -34,14 +38,16 @@ export let invoicesDB = [
   {
     _id: "5b21ca3eeb7f6fbccd471819",
     invNbr: 5,
+    clientId: "5b21ca3eeb7f6fbccd471818",
     clientName: "Company A",
     totalAmount: 80,
-    status: true,
+    status: false,
     date: 1586196647503,
   },
   {
     _id: "5b21ca3eeb7f6fbccd471820",
     invNbr: 6,
+    clientId: "5b21ca3eeb7f6fbccd471814",
     clientName: "Company B",
     totalAmount: 220,
     status: false,
@@ -50,6 +56,7 @@ export let invoicesDB = [
   {
     _id: "5b21ca3eeb7f6fbccd471821",
     invNbr: 7,
+    clientId: "5b21ca3eeb7f6fbccd471815",
     clientName: "Company C",
     totalAmount: 90,
     status: true,
@@ -58,10 +65,20 @@ export let invoicesDB = [
   {
     _id: "5b21ca3eeb7f6fbccd471822",
     invNbr: 8,
+    clientId: "5b21ca3eeb7f6fbccd471832",
     clientName: "Company D",
     totalAmount: 1300,
-    status: false,
+    status: true,
     date: 1581196705016,
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd341765",
+    invNbr: 1,
+    clientId: "5b21ca3eeb7f6fbccd471818",
+    clientName: "Company A",
+    totalAmount: 110,
+    status: true,
+    date: 1596196767503,
   },
 ];
 

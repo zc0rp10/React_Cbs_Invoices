@@ -7,7 +7,9 @@ const PaymentStatus = ({ invoice, handlePaymentStatus }) => {
     ? (classes += " text-green-600")
     : (classes += " text-red-600");
 
-  let icon = invoice.status ? "sentiment_satisfied" : "sentiment_dissatisfied";
+  const icon = invoice.status
+    ? "sentiment_satisfied"
+    : "sentiment_dissatisfied";
 
   return (
     <>
