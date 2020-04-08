@@ -4,13 +4,7 @@ import React from "react";
 import PaymentStatus from "./common/PaymentStatus";
 import Table from "./common/Table";
 
-const InvoiceTable = ({
-  paginatedInvoices,
-  onDelete,
-  onPaymentStatus,
-  onSort,
-  columnSort,
-}) => {
+const InvoiceTable = ({ paginatedInvoices, onDelete, onPaymentStatus, onSort, columnSort }) => {
   const columns = [
     { path: "invNbr", label: "Inv #" },
     { path: "date", label: "Date" },
@@ -20,10 +14,7 @@ const InvoiceTable = ({
       path: "status",
       label: "Paid",
       content: invoice => (
-        <PaymentStatus
-          status={invoice.status}
-          onClick={() => onPaymentStatus(invoice._id)}
-        />
+        <PaymentStatus status={invoice.status} onClick={() => onPaymentStatus(invoice._id)} />
       ),
     },
     {
@@ -37,12 +28,7 @@ const InvoiceTable = ({
   ];
 
   return (
-    <Table
-      columns={columns}
-      data={paginatedInvoices}
-      columnSort={columnSort}
-      onSort={onSort}
-    />
+    <Table columns={columns} data={paginatedInvoices} columnSort={columnSort} onSort={onSort} />
   );
 };
 

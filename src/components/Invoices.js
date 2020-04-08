@@ -24,6 +24,8 @@ const Invoices = () => {
   });
   const [columnSort, setColumnSort] = useState({ path: "date", order: "asc" });
 
+  const count = invoices.length;
+
   useEffect(() => {
     const clientList = [{ _id: "", name: "All Clients" }, ...getClients()];
 
@@ -58,43 +60,39 @@ const Invoices = () => {
     setInvoices(updatedInvoices);
   }
 
-  const count = invoices.length;
-  if (count === 0)
-    return <p className="px-4 py-4">There are no invoice in the database.</p>;
+  function getPaginatedData() {
+    const filteredInvoices =
+      selectedClient && selectedClient._id
+        ? invoices.filter(inv => inv.clientId === selectedClient._id)
+        : invoices;
 
-  const filteredInvoices =
-    selectedClient && selectedClient._id
-      ? invoices.filter(inv => inv.clientId === selectedClient._id)
-      : invoices;
+    const sortedInvoices = _.orderBy(filteredInvoices, [columnSort.path], [columnSort.order]);
 
-  const sortedInvoices = _.orderBy(
-    filteredInvoices,
-    [columnSort.path],
-    [columnSort.order]
-  );
+    const paginatedInvoices = paginate(sortedInvoices, currentPage, pageSize);
 
-  const paginatedInvoices = paginate(sortedInvoices, currentPage, pageSize);
+    return { totalCount: filteredInvoices.length, data: paginatedInvoices };
+  }
+
+  if (count === 0) return <p className="px-4 py-4">There are no invoice in the database.</p>;
+
+  const { totalCount, data } = getPaginatedData();
 
   return (
     <div className="flex justify-between">
-      <ListGroup
-        items={clients}
-        selectedItem={selectedClient}
-        onItemSelect={handleClientSelect}
-      />
+      <ListGroup items={clients} selectedItem={selectedClient} onItemSelect={handleClientSelect} />
       <div className="w-full pl-8">
         <p className="px-4 py-4">
-          Showing {filteredInvoices.length} of {count} invoices in the database.
+          Showing {totalCount} of {count} invoices in the database.
         </p>
         <InvoiceTable
-          paginatedInvoices={paginatedInvoices}
+          paginatedInvoices={data}
           columnSort={columnSort}
           onPaymentStatus={handlePaymentStatus}
           onDelete={handleDelete}
           onSort={handleSort}
         />
         <Pagination
-          invoiceCount={filteredInvoices.length}
+          invoiceCount={totalCount}
           pageSize={pageSize}
           currentPage={currentPage}
           onPageChange={handlePageChange}
