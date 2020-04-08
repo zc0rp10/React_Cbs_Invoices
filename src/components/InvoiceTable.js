@@ -2,8 +2,7 @@ import React from "react";
 
 //Components
 import PaymentStatus from "./common/PaymentStatus";
-import TableHeader from "./common/TableHeader";
-import TableBody from "./common/TableBody";
+import Table from "./common/Table";
 
 const InvoiceTable = ({
   paginatedInvoices,
@@ -38,10 +37,12 @@ const InvoiceTable = ({
   ];
 
   return (
-    <table className="w-full">
-      <TableHeader columns={columns} columnSort={columnSort} onSort={onSort} />
-      <TableBody data={paginatedInvoices} columns={columns} />
-    </table>
+    <Table
+      columns={columns}
+      data={paginatedInvoices}
+      columnSort={columnSort}
+      onSort={onSort}
+    />
   );
 };
 
