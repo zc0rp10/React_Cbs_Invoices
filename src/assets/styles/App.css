@@ -13184,8 +13184,6 @@ video {
   transition-duration: 1000ms;
 }
 
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
 
 /* Buttons */

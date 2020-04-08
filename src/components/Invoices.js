@@ -24,7 +24,7 @@ const Invoices = () => {
   });
   const [columnSort, setColumnSort] = useState({ path: "date", order: "asc" });
 
-  const count = invoices.length;
+  const totalCount = invoices.length;
 
   useEffect(() => {
     const clientList = [{ _id: "", name: "All Clients" }, ...getClients()];
@@ -70,19 +70,18 @@ const Invoices = () => {
 
     const paginatedInvoices = paginate(sortedInvoices, currentPage, pageSize);
 
-    return { totalCount: filteredInvoices.length, data: paginatedInvoices };
+    return { count: filteredInvoices.length, data: paginatedInvoices };
   }
 
-  if (count === 0) return <p className="px-4 py-4">There are no invoice in the database.</p>;
+  const { count, data } = getPaginatedData();
 
-  const { totalCount, data } = getPaginatedData();
-
+  if (totalCount === 0) return <p className="px-4 py-4">There are no invoice in the database.</p>;
   return (
     <div className="flex justify-between">
       <ListGroup items={clients} selectedItem={selectedClient} onItemSelect={handleClientSelect} />
       <div className="w-full pl-8">
         <p className="px-4 py-4">
-          Showing {totalCount} of {count} invoices in the database.
+          Showing {count} of {totalCount} invoices in the database.
         </p>
         <InvoiceTable
           paginatedInvoices={data}
