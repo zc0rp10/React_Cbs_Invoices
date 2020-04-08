@@ -16,7 +16,7 @@ import { getClients } from "../services/tempClientService";
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
   const [clients, setClients] = useState([]);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedClient, setSelectedClient] = useState({
     _id: "",
@@ -45,7 +45,6 @@ const Invoices = () => {
   }
 
   function handleSort(newColumnSort) {
-    console.log(newColumnSort);
     setColumnSort(newColumnSort);
   }
 
