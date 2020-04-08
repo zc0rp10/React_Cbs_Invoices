@@ -16,7 +16,7 @@ import { getClients } from "../services/tempClientService";
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
   const [clients, setClients] = useState([]);
-  const [pageSize, setPageSize] = useState(2);
+  const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedClient, setSelectedClient] = useState({
     _id: "",
@@ -44,16 +44,9 @@ const Invoices = () => {
     setCurrentPage(1);
   }
 
-  function handleSort(path) {
-    setColumnSort(prevState => ({
-      path,
-      order:
-        prevState.path === path //If same column is clicked flip sort order. Otherwise sort new column by "asc"
-          ? prevState.order === "asc"
-            ? "desc"
-            : "asc"
-          : "asc",
-    }));
+  function handleSort(newColumnSort) {
+    console.log(newColumnSort);
+    setColumnSort(newColumnSort);
   }
 
   function handlePaymentStatus(id) {
@@ -96,6 +89,7 @@ const Invoices = () => {
         </p>
         <InvoiceTable
           paginatedInvoices={paginatedInvoices}
+          columnSort={columnSort}
           onPaymentStatus={handlePaymentStatus}
           onDelete={handleDelete}
           onSort={handleSort}

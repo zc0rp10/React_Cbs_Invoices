@@ -8,38 +8,51 @@ const InvoiceTable = ({
   onDelete,
   onPaymentStatus,
   onSort,
+  columnSort,
 }) => {
+  function raiseSort(path) {
+    //If same column is clicked flip sort order.
+    //Otherwise sort new column by "asc"
+    const newColumnSort = { ...columnSort };
+    if (newColumnSort.path === path) {
+      newColumnSort.order = newColumnSort.order === "asc" ? "desc" : "asc";
+    } else {
+      newColumnSort.path = path;
+      newColumnSort.order = "asc";
+    }
+    onSort(newColumnSort);
+  }
   return (
     <>
       <table className="w-full">
         <thead>
           <tr>
             <th
-              onClick={() => onSort("invNbr")}
+              onClick={() => raiseSort("invNbr")}
               className="px-4 py-4 border-b text-left"
             >
               Inv #
             </th>
             <th
-              onClick={() => onSort("date")}
+              onClick={() => raiseSort("date")}
               className="px-4 py-4 border-b text-left"
             >
               Date
             </th>
             <th
-              onClick={() => onSort("clientName")}
+              onClick={() => raiseSort("clientName")}
               className="px-4 py-4 border-b text-left"
             >
               Client
             </th>
             <th
-              onClick={() => onSort("totalAmount")}
+              onClick={() => raiseSort("totalAmount")}
               className="px-4 py-4 border-b text-left"
             >
               Amount
             </th>
             <th
-              onClick={() => onSort("status")}
+              onClick={() => raiseSort("status")}
               className="px-4 py-4 border-b text-left"
             >
               Paid
