@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import _ from "lodash";
 
 //Components
-import ClientsTable from "./ClientsTable";
+import InvoiceTable from "./InvoiceTable";
 import Pagination from "./common/Pagination";
 import ListGroup from "./common/ListGroup";
 
@@ -18,9 +19,10 @@ const Invoices = () => {
   const [pageSize, setPageSize] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedClient, setSelectedClient] = useState();
+  const [columnSort, setColumnSort] = useState({ path: "date", order: "asc" });
 
   useEffect(() => {
-    const clientList = [{ name: "All Clients" }, ...getClients()];
+    const clientList = [{ _id: "", name: "All Clients" }, ...getClients()];
 
     setInvoices(getInvoices);
     setClients(clientList);
@@ -37,6 +39,18 @@ const Invoices = () => {
   function handleClientSelect(client) {
     setSelectedClient(client);
     setCurrentPage(1);
+  }
+
+  function handleSort(path) {
+    setColumnSort(prevState => ({
+      path,
+      order:
+        prevState.path === path
+          ? prevState.order === "asc"
+            ? "desc"
+            : "asc"
+          : "asc",
+    }));
   }
 
   function handlePaymentStatus(id) {
@@ -58,7 +72,13 @@ const Invoices = () => {
       ? invoices.filter(inv => inv.clientId === selectedClient._id)
       : invoices;
 
-  const paginatedInvoices = paginate(filteredInvoices, currentPage, pageSize);
+  const sortedInvoices = _.orderBy(
+    filteredInvoices,
+    [columnSort.path],
+    [columnSort.order]
+  );
+
+  const paginatedInvoices = paginate(sortedInvoices, currentPage, pageSize);
 
   return (
     <div className="flex justify-between">
@@ -71,10 +91,11 @@ const Invoices = () => {
         <p className="px-4 py-4">
           Showing {filteredInvoices.length} of {count} invoices in the database.
         </p>
-        <ClientsTable
+        <InvoiceTable
           paginatedInvoices={paginatedInvoices}
-          onDelete={handleDelete}
           onPaymentStatus={handlePaymentStatus}
+          onDelete={handleDelete}
+          onSort={handleSort}
         />
         <Pagination
           invoiceCount={filteredInvoices.length}

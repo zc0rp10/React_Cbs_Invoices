@@ -4,20 +4,46 @@ import React from "react";
 import PaymentStatus from "./common/PaymentStatus";
 
 const ClientsTable = ({
+  paginatedInvoices,
   onDelete,
   onPaymentStatus,
-  paginatedInvoices,
+  onSort,
 }) => {
   return (
     <>
       <table className="w-full">
         <thead>
           <tr>
-            <th className="px-4 py-4 border-b text-left">Inv #</th>
-            <th className="px-4 py-4 border-b text-left">Date</th>
-            <th className="px-4 py-4 border-b text-left">Client</th>
-            <th className="px-4 py-4 border-b text-left">Amount</th>
-            <th className="px-4 py-4 border-b text-left">Paid</th>
+            <th
+              onClick={() => onSort("invNbr")}
+              className="px-4 py-4 border-b text-left"
+            >
+              Inv #
+            </th>
+            <th
+              onClick={() => onSort("date")}
+              className="px-4 py-4 border-b text-left"
+            >
+              Date
+            </th>
+            <th
+              onClick={() => onSort("clientName")}
+              className="px-4 py-4 border-b text-left"
+            >
+              Client
+            </th>
+            <th
+              onClick={() => onSort("totalAmount")}
+              className="px-4 py-4 border-b text-left"
+            >
+              Amount
+            </th>
+            <th
+              onClick={() => onSort("status")}
+              className="px-4 py-4 border-b text-left"
+            >
+              Paid
+            </th>
             <th className="px-4 py-4 border-b text-left"></th>
           </tr>
         </thead>
