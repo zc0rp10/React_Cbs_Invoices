@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 //Components
 import TableHeader from "./TableHeader";
@@ -11,6 +12,13 @@ const Table = ({ columns, columnSort, onSort, data }) => {
       <TableBody columns={columns} data={data} />
     </table>
   );
+};
+
+Table.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columnSort: PropTypes.object,
+  onSort: PropTypes.func,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Table;

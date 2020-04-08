@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 //Components
 import PaymentStatus from "./common/PaymentStatus";
@@ -30,6 +31,14 @@ const InvoiceTable = ({ paginatedInvoices, onDelete, onPaymentStatus, onSort, co
   return (
     <Table columns={columns} data={paginatedInvoices} columnSort={columnSort} onSort={onSort} />
   );
+};
+
+InvoiceTable.propTypes = {
+  paginatedInvoices: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onDelete: PropTypes.func,
+  onPaymentStatus: PropTypes.func,
+  onSort: PropTypes.func,
+  columnSort: PropTypes.object,
 };
 
 export default InvoiceTable;

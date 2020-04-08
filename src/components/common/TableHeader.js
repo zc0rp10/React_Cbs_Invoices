@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const TableHeader = ({ columns, columnSort, onSort }) => {
   function raiseSort(path) {
@@ -58,6 +59,12 @@ const TableHeader = ({ columns, columnSort, onSort }) => {
       </tr>
     </thead>
   );
+};
+
+TableHeader.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columnSort: PropTypes.object,
+  onSort: PropTypes.func,
 };
 
 export default TableHeader;
