@@ -3,6 +3,7 @@ import React from "react";
 //Components
 import PaymentStatus from "./common/PaymentStatus";
 import TableHeader from "./common/TableHeader";
+import TableBody from "./common/TableBody";
 
 const InvoiceTable = ({
   paginatedInvoices,
@@ -16,53 +17,31 @@ const InvoiceTable = ({
     { path: "date", label: "Date" },
     { path: "clientName", label: "Client" },
     { path: "totalAmount", label: "Amount" },
-    { path: "status", label: "Paid" },
-    { key: "delete" },
+    {
+      path: "status",
+      label: "Paid",
+      content: invoice => (
+        <PaymentStatus
+          status={invoice.status}
+          onClick={() => onPaymentStatus(invoice._id)}
+        />
+      ),
+    },
+    {
+      key: "delete",
+      content: invoice => (
+        <button onClick={() => onDelete(invoice)} className="btn btn-delete">
+          Delete
+        </button>
+      ),
+    },
   ];
 
-  console.log(paginatedInvoices);
-
   return (
-    <>
-      <table className="w-full">
-        <TableHeader
-          columns={columns}
-          columnSort={columnSort}
-          onSort={onSort}
-        />
-        <tbody>
-          {paginatedInvoices.map(invoice => {
-            const date = new Date(invoice.date).toISOString().slice(0, 10);
-            return (
-              <tr key={invoice._id}>
-                <td className="px-4 py-2 text-sm border-b">{invoice.invNbr}</td>
-                <td className="px-4 py-2 text-sm border-b">{date}</td>
-                <td className="px-4 py-2 text-sm border-b">
-                  {invoice.clientName}
-                </td>
-                <td className="px-4 py-2 text-sm border-b">
-                  {invoice.totalAmount}
-                </td>
-                <td className="px-4 py-2 text-sm border-b">
-                  <PaymentStatus
-                    invoice={invoice}
-                    handlePaymentStatus={onPaymentStatus}
-                  />
-                </td>
-                <td className="px-4 py 2 text-sm border-b">
-                  <button
-                    onClick={() => onDelete(invoice)}
-                    className="btn btn-delete"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </>
+    <table className="w-full">
+      <TableHeader columns={columns} columnSort={columnSort} onSort={onSort} />
+      <TableBody data={paginatedInvoices} columns={columns} />
+    </table>
   );
 };
 
