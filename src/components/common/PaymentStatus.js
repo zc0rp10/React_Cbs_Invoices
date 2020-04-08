@@ -1,22 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const PaymentStatus = ({ invoice, handlePaymentStatus }) => {
+const PaymentStatus = ({ status, onClick }) => {
   let classes = "material-icons-outlined cursor-pointer";
-  invoice.status
-    ? (classes += " text-green-600")
-    : (classes += " text-red-600");
+  status ? (classes += " text-green-600") : (classes += " text-red-600");
 
-  const icon = invoice.status
-    ? "sentiment_satisfied"
-    : "sentiment_dissatisfied";
+  const icon = status ? "sentiment_satisfied" : "sentiment_dissatisfied";
 
   return (
     <>
-      <span
-        className={classes}
-        onClick={() => handlePaymentStatus(invoice._id)}
-      >
+      <span className={classes} onClick={onClick}>
         {icon}
       </span>
     </>
@@ -24,8 +17,8 @@ const PaymentStatus = ({ invoice, handlePaymentStatus }) => {
 };
 
 PaymentStatus.propTypes = {
-  invoice: PropTypes.object.isRequired,
-  handlePaymentStatus: PropTypes.func.isRequired,
+  status: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PaymentStatus;
