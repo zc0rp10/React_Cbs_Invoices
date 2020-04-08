@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ListGroup = ({
   items,
@@ -28,6 +29,13 @@ const ListGroup = ({
       <ul className="p-5">{itemList}</ul>
     </div>
   );
+};
+
+ListGroup.propTypes = {
+  items: PropTypes.array.isRequired,
+  textProperty: PropTypes.any.isRequired,
+  valueProperty: PropTypes.any.isRequired,
+  onItemSelect: PropTypes.func,
 };
 
 ListGroup.defaultProps = {
