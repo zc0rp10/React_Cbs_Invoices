@@ -18,6 +18,15 @@
   @apply bg-red-700;
 }
 
+/* Primary */
+.btn-primary {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
+
+.btn-primary:hover {
+  @apply bg-blue-700;
+}
+
 /* Pagination */
 .btn-pagination-nbr.active {
   @apply bg-gray-200 text-gray-500;

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 //Components
 import PaymentStatus from "./common/PaymentStatus";
@@ -7,7 +8,15 @@ import Table from "./common/Table";
 
 const InvoiceTable = ({ paginatedInvoices, onDelete, onPaymentStatus, onSort, columnSort }) => {
   const columns = [
-    { path: "invNbr", label: "Inv #" },
+    {
+      path: "invNbr",
+      label: "Inv #",
+      content: invoice => (
+        <Link className="text-blue-600 font-bold" to={`/invoices/${invoice._id}`}>
+          {invoice.invNbr}
+        </Link>
+      ),
+    },
     { path: "date", label: "Date" },
     { path: "clientName", label: "Client" },
     { path: "totalAmount", label: "Amount" },

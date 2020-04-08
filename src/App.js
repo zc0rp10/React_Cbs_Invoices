@@ -4,6 +4,7 @@ import "./assets/styles/App.css";
 
 //Components
 import Invoices from "./components/Invoices";
+import InvoiceForm from "./components/InvoiceForm";
 import Clients from "./components/Clients";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/NavBar";
@@ -14,9 +15,10 @@ function App() {
       <NavBar />
       <main className="px-8">
         <Switch>
-          <Route path="/invoices" component={Invoices}></Route>
-          <Route path="/clients" component={Clients}></Route>
-          <Route path="/not-found" component={NotFound}></Route>
+          <Route path="/invoices/:id" component={InvoiceForm} />
+          <Route path="/invoices" component={Invoices} />
+          <Route path="/clients" component={Clients} />
+          <Route path="/not-found" component={NotFound} />
           <Redirect from="/" exact to="/invoices" />
           <Redirect to="/not-found" />
         </Switch>
