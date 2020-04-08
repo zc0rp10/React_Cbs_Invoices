@@ -18,7 +18,10 @@ const Invoices = () => {
   const [clients, setClients] = useState([]);
   const [pageSize, setPageSize] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedClient, setSelectedClient] = useState();
+  const [selectedClient, setSelectedClient] = useState({
+    _id: "",
+    name: "All Clients",
+  });
   const [columnSort, setColumnSort] = useState({ path: "date", order: "asc" });
 
   useEffect(() => {
@@ -45,7 +48,7 @@ const Invoices = () => {
     setColumnSort(prevState => ({
       path,
       order:
-        prevState.path === path
+        prevState.path === path //If same column is clicked flip sort order. Otherwise sort new column by "asc"
           ? prevState.order === "asc"
             ? "desc"
             : "asc"

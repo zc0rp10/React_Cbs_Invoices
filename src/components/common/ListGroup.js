@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
 
 const ListGroup = ({
   items,
@@ -11,7 +12,7 @@ const ListGroup = ({
   const itemList = items.map(item => {
     let classes =
       "list-group-item block w-32 py-3 border -mb-px text-center hover:bg-gray-100 cursor-pointer";
-    if (item === selectedItem) classes += " active";
+    if (_.isEqual(item, selectedItem)) classes += " active";
 
     return (
       <li

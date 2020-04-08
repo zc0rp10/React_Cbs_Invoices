@@ -3,7 +3,7 @@ import React from "react";
 //Components
 import PaymentStatus from "./common/PaymentStatus";
 
-const ClientsTable = ({
+const InvoiceTable = ({
   paginatedInvoices,
   onDelete,
   onPaymentStatus,
@@ -83,4 +83,4 @@ const ClientsTable = ({
   );
 };
 
-export default ClientsTable;
+export default InvoiceTable;
