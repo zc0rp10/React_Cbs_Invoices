@@ -20,7 +20,7 @@ const TableHeader = ({ columns, columnSort, onSort }) => {
     if (columnSort.order === "asc")
       return (
         <svg
-          class="inline-block fill-current text-blue-500"
+          className="inline-block fill-current text-blue-500"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
@@ -32,7 +32,7 @@ const TableHeader = ({ columns, columnSort, onSort }) => {
       );
     return (
       <svg
-        class="inline-block fill-current text-blue-500"
+        className="inline-block fill-current text-blue-500"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width="24"

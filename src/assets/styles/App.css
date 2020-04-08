@@ -13320,6 +13320,12 @@ video {
   color: #fff;
 }
 
+/* NavLink Active */
+
+.navLink.active {
+  background-color: #4a5568;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

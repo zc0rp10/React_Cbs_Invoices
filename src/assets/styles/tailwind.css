@@ -67,3 +67,8 @@
 .list-group-item.active {
   @apply bg-blue-500 text-white;
 }
+
+/* NavLink Active */
+.navLink.active {
+  @apply bg-gray-700;
+}
