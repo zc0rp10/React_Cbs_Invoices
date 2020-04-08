@@ -11,13 +11,15 @@ import ListGroup from "./common/ListGroup";
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
   const [clients, setClients] = useState([]);
-  const [pageSize, setPageSize] = useState(3);
+  const [pageSize, setPageSize] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedClient, setSelectedClient] = useState();
 
   useEffect(() => {
+    const clientList = [{ name: "All Clients" }, ...getClients()];
+
     setInvoices(getInvoices);
-    setClients(getClients);
+    setClients(clientList);
   }, []);
 
   function handleDelete(invoice) {
@@ -30,6 +32,7 @@ const Invoices = () => {
 
   function handleClientSelect(client) {
     setSelectedClient(client);
+    setCurrentPage(1);
   }
 
   function handlePaymentStatus(id) {
@@ -46,10 +49,11 @@ const Invoices = () => {
   if (count === 0)
     return <p className="px-4 py-4">There are no invoice in the database.</p>;
 
-  const filteredInvoices = selectedClient
-    ? invoices.filter(inv => inv.clientId === selectedClient._id)
-    : invoices;
-  console.log(filteredInvoices);
+  const filteredInvoices =
+    selectedClient && selectedClient._id
+      ? invoices.filter(inv => inv.clientId === selectedClient._id)
+      : invoices;
+
   const paginatedInvoices = paginate(filteredInvoices, currentPage, pageSize);
 
   return (
