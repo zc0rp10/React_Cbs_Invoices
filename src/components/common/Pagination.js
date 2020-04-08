@@ -10,7 +10,7 @@ const Pagination = ({ invoiceCount, pageSize, currentPage, onPageChange }) => {
   const pages = _.range(1, pageCount + 1);
 
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-center border-t border-gray-200 sm:px-6">
+    <div className="px-4 py-3 flex items-center justify-center border-t border-gray-200 sm:px-6">
       <div>
         <span className="relative z-0 inline-flex shadow-sm">
           <button
@@ -31,11 +31,7 @@ const Pagination = ({ invoiceCount, pageSize, currentPage, onPageChange }) => {
             <button
               key={page}
               type="button"
-              className={
-                page === currentPage
-                  ? "btn-pagination-nbr active"
-                  : "btn-pagination-nbr"
-              }
+              className={page === currentPage ? "btn-pagination-nbr active" : "btn-pagination-nbr"}
               onClick={() => onPageChange(page)}
             >
               {page}

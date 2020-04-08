@@ -77,7 +77,7 @@ const Invoices = () => {
 
   if (totalCount === 0) return <p className="px-4 py-4">There are no invoice in the database.</p>;
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <ListGroup items={clients} selectedItem={selectedClient} onItemSelect={handleClientSelect} />
       <div className="w-full pl-8">
         <p className="px-4 py-4">
