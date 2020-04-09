@@ -1,3 +1,5 @@
+import * as clientsAPI from "./tempClientService";
+
 export const invoicesDB = [
   {
     _id: "5b21ca3eeb7f6fbccd471815",
@@ -84,4 +86,29 @@ export const invoicesDB = [
 
 export function getInvoices() {
   return invoicesDB;
+}
+
+export function getInvoice(id) {
+  return invoicesDB.find(i => i._id === id);
+}
+
+export function saveInvoice(invoice) {
+  let invoiceInDb = invoicesDB.find(i => i._id === invoice._id) || {};
+  invoiceInDb.name = invoice.name;
+  invoiceInDb.client = clientsAPI.clients.find(c => c._id === invoice.clientId);
+  invoiceInDb.numberInStock = invoice.numberInStock;
+  invoiceInDb.dailyRentalRate = invoice.dailyRentalRate;
+
+  if (!invoiceInDb._id) {
+    invoiceInDb._id = Date.now();
+    invoicesDB.push(invoiceInDb);
+  }
+
+  return invoiceInDb;
+}
+
+export function deleteInvoice(id) {
+  let invoiceInDb = invoicesDB.find(m => m._id === id);
+  invoicesDB.splice(invoicesDB.indexOf(invoiceInDb), 1);
+  return invoiceInDb;
 }
