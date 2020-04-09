@@ -8,7 +8,7 @@ import InvoiceForm from "./components/InvoiceForm";
 import Clients from "./components/Clients";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/NavBar";
-import LoginForm from "./components/LoginForm";
+import SignInForm from "./components/SignInForm";
 import Dashboard from "./components/Dashboard";
 import Reports from "./components/Reports";
 
@@ -18,7 +18,7 @@ function App() {
       <NavBar />
       <main className="px-8">
         <Switch>
-          <Route path="/login" component={LoginForm} />
+          <Route path="/signin" component={SignInForm} />
           <Route path="/invoices/:id" component={InvoiceForm} />
           <Route path="/invoices" component={Invoices} />
           <Route path="/clients" component={Clients} />

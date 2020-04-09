@@ -47,7 +47,7 @@ const NavBar = () => {
         </li>
         <li className="mr-6 ml-auto">
           <NavLink
-            to="/login"
+            to="/signin"
             className="navLink ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none transition duration-150 ease-in-out"
           >
             Sign In
