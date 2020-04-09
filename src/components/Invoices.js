@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 
 //Components
@@ -80,9 +81,14 @@ const Invoices = () => {
     <div className="flex justify-between bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <ListGroup items={clients} selectedItem={selectedClient} onItemSelect={handleClientSelect} />
       <div className="w-full pl-8">
-        <p className="px-4 py-4">
-          Showing {count} of {totalCount} invoices in the database.
-        </p>
+        <div className="">
+          <Link to={`/invoices/new`}>
+            <button className="btn btn-primary inline-block">New Invoice</button>
+          </Link>
+          <p className="px-4 py-4 inline-block">
+            Showing {count} of {totalCount} invoices in the database.
+          </p>
+        </div>
         <InvoiceTable
           paginatedInvoices={data}
           columnSort={columnSort}
