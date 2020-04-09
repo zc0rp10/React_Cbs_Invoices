@@ -15,6 +15,14 @@ const NavBar = () => {
         </li>
         <li className="mr-6">
           <NavLink
+            to="/dashboard"
+            className="navLink ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none transition duration-150 ease-in-out"
+          >
+            Dashboard
+          </NavLink>
+        </li>
+        <li className="mr-6">
+          <NavLink
             to="/invoices"
             className="navLink ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none transition duration-150 ease-in-out"
           >
@@ -27,6 +35,14 @@ const NavBar = () => {
             className="navLink ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none transition duration-150 ease-in-out"
           >
             Clients
+          </NavLink>
+        </li>
+        <li className="mr-6">
+          <NavLink
+            to="/reports"
+            className="navLink ml-4 px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none transition duration-150 ease-in-out"
+          >
+            Reports
           </NavLink>
         </li>
         <li className="mr-6 ml-auto">

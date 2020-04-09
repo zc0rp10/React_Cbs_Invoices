@@ -9,6 +9,8 @@ import Clients from "./components/Clients";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/NavBar";
 import LoginForm from "./components/LoginForm";
+import Dashboard from "./components/Dashboard";
+import Reports from "./components/Reports";
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
           <Route path="/invoices" component={Invoices} />
           <Route path="/clients" component={Clients} />
           <Route path="/not-found" component={NotFound} />
-          <Redirect from="/" exact to="/invoices" />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/reports" component={Reports} />
+          <Route from="/" exact component={Invoices} />
           <Redirect to="/not-found" />
         </Switch>
       </main>
