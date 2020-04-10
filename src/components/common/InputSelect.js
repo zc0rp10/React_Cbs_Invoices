@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useField } from "formik";
 
 const InputSelect = ({ label, options, ...props }) => {
@@ -47,6 +48,12 @@ const InputSelect = ({ label, options, ...props }) => {
       </div>
     </div>
   );
+};
+
+InputSelect.propTypes = {
+  label: PropTypes.string,
+  options: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default InputSelect;
