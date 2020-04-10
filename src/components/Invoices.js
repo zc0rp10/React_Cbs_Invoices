@@ -13,11 +13,12 @@ import { paginate } from "../utils/paginate";
 //Temp "Database"
 import { getInvoices } from "../services/tempInvoiceService";
 import { getClients } from "../services/tempClientService";
+import { saveInvoice, deleteInvoice } from "../services/tempInvoiceService";
 
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
   const [clients, setClients] = useState([]);
-  const [pageSize, setPageSize] = useState(4);
+  const [pageSize] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedClient, setSelectedClient] = useState({
     _id: "",
@@ -35,6 +36,7 @@ const Invoices = () => {
   }, []);
 
   function handleDelete(invoice) {
+    deleteInvoice(invoice._id)
     setInvoices(prevState => prevState.filter(inv => inv._id !== invoice._id));
   }
 
@@ -54,7 +56,9 @@ const Invoices = () => {
   function handlePaymentStatus(id) {
     const updatedInvoices = invoices.map(inv => {
       if (inv._id === id) {
-        return { ...inv, status: !inv.status };
+        inv = { ...inv, status: !inv.status };
+        saveInvoice(inv);
+        return inv;
       }
       return inv;
     });
@@ -78,7 +82,7 @@ const Invoices = () => {
 
   if (totalCount === 0) return <p className="px-4 py-4">There are no invoice in the database.</p>;
   return (
-    <div className="flex justify-between bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="flex justify-between bg-white shadow-md rounded p-8 max-w-screen-xl mx-auto">
       <ListGroup items={clients} selectedItem={selectedClient} onItemSelect={handleClientSelect} />
       <div className="w-full pl-8">
         <div className="">

@@ -94,13 +94,15 @@ export function getInvoice(id) {
 
 export function saveInvoice(invoice) {
   let invoiceInDb = invoicesDB.find(i => i._id === invoice._id) || {};
-  invoiceInDb.name = invoice.name;
-  invoiceInDb.client = clientsAPI.clients.find(c => c._id === invoice.clientId);
-  invoiceInDb.numberInStock = invoice.numberInStock;
-  invoiceInDb.dailyRentalRate = invoice.dailyRentalRate;
+  invoiceInDb.invNbr = invoice.invNbr;
+  invoiceInDb.clientId = invoice.clientId;
+  invoiceInDb.clientName = clientsAPI.clients.find(client => client._id === invoice.clientId).name;
+  invoiceInDb.totalAmount = invoice.totalAmount;
+  invoiceInDb.status = invoice.status || false;
+  invoiceInDb.date = invoice.date;
 
   if (!invoiceInDb._id) {
-    invoiceInDb._id = Date.now();
+    invoiceInDb._id = Date.now().toString();
     invoicesDB.push(invoiceInDb);
   }
 
@@ -108,7 +110,7 @@ export function saveInvoice(invoice) {
 }
 
 export function deleteInvoice(id) {
-  let invoiceInDb = invoicesDB.find(m => m._id === id);
+  let invoiceInDb = invoicesDB.find(i => i._id === id);
   invoicesDB.splice(invoicesDB.indexOf(invoiceInDb), 1);
   return invoiceInDb;
 }
