@@ -6,6 +6,7 @@ import _ from "lodash";
 import InvoiceTable from "./InvoiceTable";
 import Pagination from "./common/Pagination";
 import ListGroup from "./common/ListGroup";
+import SearchBox from "./common/SearchBox";
 
 //Utils
 import { paginate } from "../utils/paginate";
@@ -25,6 +26,7 @@ const Invoices = () => {
     name: "All Clients",
   });
   const [columnSort, setColumnSort] = useState({ path: "date", order: "asc" });
+  const [searchQuery, setSearchQuery] = useState(""); //Will take a number, had to initialize with something otherwise React complained about chaning uncontrolled/controlled input. Had to iniate with empty string, cuz if I did with anumber it would overwite placeholder.
 
   const totalCount = invoices.length;
 
@@ -36,7 +38,7 @@ const Invoices = () => {
   }, []);
 
   function handleDelete(invoice) {
-    deleteInvoice(invoice._id)
+    deleteInvoice(invoice._id);
     setInvoices(prevState => prevState.filter(inv => inv._id !== invoice._id));
   }
 
@@ -45,6 +47,7 @@ const Invoices = () => {
   }
 
   function handleClientSelect(client) {
+    setSearchQuery("");
     setSelectedClient(client);
     setCurrentPage(1);
   }
@@ -65,11 +68,23 @@ const Invoices = () => {
     setInvoices(updatedInvoices);
   }
 
+  function handleSearch(query) {
+    setCurrentPage(1);
+    setSelectedClient({
+      _id: "",
+      name: "All Clients",
+    });
+    setSearchQuery(query);
+  }
+
   function getPaginatedData() {
-    const filteredInvoices =
-      selectedClient && selectedClient._id
-        ? invoices.filter(inv => inv.clientId === selectedClient._id)
-        : invoices;
+    let filteredInvoices = invoices;
+
+    if (searchQuery) {
+      filteredInvoices = invoices.filter(inv => inv.invNbr.toString().includes(searchQuery));
+    } else if (selectedClient && selectedClient._id) {
+      filteredInvoices = invoices.filter(inv => inv.clientId === selectedClient._id);
+    }
 
     const sortedInvoices = _.orderBy(filteredInvoices, [columnSort.path], [columnSort.order]);
 
@@ -86,13 +101,16 @@ const Invoices = () => {
       <ListGroup items={clients} selectedItem={selectedClient} onItemSelect={handleClientSelect} />
       <div className="w-full pl-8">
         <div className="">
-          <Link to={`/invoices/new`}>
+          <Link to={"/invoices/new"}>
             <button className="btn btn-primary inline-block">New Invoice</button>
           </Link>
           <p className="px-4 py-4 inline-block">
             Showing {count} of {totalCount} invoices in the database.
           </p>
         </div>
+
+        <SearchBox value={searchQuery} onChange={handleSearch} />
+
         <InvoiceTable
           paginatedInvoices={data}
           columnSort={columnSort}
