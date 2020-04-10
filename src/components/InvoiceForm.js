@@ -48,6 +48,7 @@ const InvoiceForm = ({ match, history }) => {
       <Formik
         enableReinitialize
         initialValues={{
+          _id: invoice._id,
           invNbr: invoice.invNbr,
           clientId: invoice.clientId,
           totalAmount: invoice.totalAmount,
@@ -71,7 +72,7 @@ const InvoiceForm = ({ match, history }) => {
             <InputSelect label="Client" name="clientId" options={clients} />
             <InputText label="Total Amount" name="totalAmount" type="number" />
             <InputText label="Invoice Date" name="date" type="number" />
-            <button disabled={isSubmitting} className="btn btn-primary mt-5" type="submit">
+            <button className="btn btn-primary mt-5" type="submit">
               Submit
             </button>
           </Form>

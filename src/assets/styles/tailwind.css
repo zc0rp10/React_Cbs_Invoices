@@ -9,6 +9,10 @@
   @apply font-bold py-1 px-2 rounded;
 }
 
+.btn:disabled {
+  @apply opacity-50;
+} 
+
 /* Danger */
 .btn-delete {
   @apply bg-red-600 text-white text-sm;

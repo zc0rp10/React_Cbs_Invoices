@@ -13197,6 +13197,10 @@ video {
   border-radius: 0.25rem;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+}
+
 /* Danger */
 
 .btn-delete {
